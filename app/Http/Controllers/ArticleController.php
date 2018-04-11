@@ -12,27 +12,30 @@ class ArticleController extends Controller
         return Article::all();
     }
  
-    public function show(Article $article)
-    {
-        return $article;
+    public function show($id)
+    { 
+        return Article::find($id);
     }
 
     public function store(Request $request)
     {
-        $article = Article::create($request->all());
-        return response()->json($article);
+        return Article::create($request->all());
     }
 
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
+        $article = Article::findOrFail($id);
         $article->update($request->all());
-        return response()->json($article);
+
+        return $article;
     }
 
-    public function delete(Request $request, Article $article)
+    public function delete(Request $request, $id)
     {
+        $article = Article::findOrFail($id);
         $article->delete();
         //204 status code: The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.
-        return response()->json(null, 204);
+
+        return 204;
     }
 }
