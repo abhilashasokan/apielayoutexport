@@ -43,6 +43,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('articles', 'ArticleController@store');
     Route::put('articles/{id}', 'ArticleController@update');
     Route::delete('articles/{id}', 'ArticleController@delete');
+
+    // Template datamatch routes
+    Route::post('datamatch/import', 'TemplateDatamatchController@import');
+    Route::get('datamatch/elements/available', 'TemplateDatamatchController@elementsavailable');
+    Route::get('datamatch/elements/available/attributes', 'TemplateDatamatchController@elementsattributesavailable');
+  
+
 }); 
 
 // Route::post('register', 'Auth\RegisterController@register');
